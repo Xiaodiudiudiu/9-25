@@ -1,1 +1,38 @@
 
+#include<iostream>;
+using namespace std;
+int a[10], book[10], n;//只考虑了1-9
+
+void dfs(int step)
+{
+	int i;
+	if (step == n + 1)
+	{
+		for (i = 1; i <= n; i++)
+		{
+			cout << a[i];
+			if (i % n == 0) cout << endl;
+		}
+		return; //(返回哪里？) 直接结束子函数了！
+	}
+	for (i = 1; i <= n; i++)
+	{
+
+		if (book[i] == 0)
+		{
+			a[step] = i;//核心赋值语句
+			book[i] = 1;
+
+			dfs(step + 1);
+			book[i] = 0;
+		}
+	}
+	
+}
+
+int main()
+{
+	cin >> n;
+	dfs(1);
+	return 0;
+}
